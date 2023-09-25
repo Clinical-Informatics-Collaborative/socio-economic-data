@@ -3,7 +3,7 @@
 The AU demographic data and US California mental illness data (Synthetic data) is too large to upload even using Git Large File Storage. 
 The [AU demographic data](https://wehieduau.sharepoint.com/:f:/r/sites/StudentInternGroupatWEHI/Shared%20Documents/Clinical%20Dashboards/synthea%202023/australian%20data?csf=1&web=1&e=bWyI1x) and [US California data](https://wehieduau.sharepoint.com/:f:/r/sites/StudentInternGroupatWEHI/Shared%20Documents/Clinical%20Dashboards/synthea%202023/synthea/data?csf=1&web=1&e=lKFbA1) are generated on Synthea platform.
 We've done a [preprocessing](https://github.com/Clinical-Informatics-Collaborative/socio-economic-data/blob/main/Synthea%20data/preprocess.ipynb) on Synthea USA California data. 
-**The main aim is to replace the US zip code to VIC zip code for later plotting and analysis.** 
+**The main aim is to replace the US zip code to VIC zip code for later plotting and analysis.** The output data, `vic_anxiety.csv`, can be founded [here](https://wehieduau.sharepoint.com/:x:/r/sites/StudentInternGroupatWEHI/Shared%20Documents/Clinical%20Dashboards/synthea%202023/synthea/vic_anxiety.csv?d=w1d7015a86138430e913cfe1d681f1e1c&csf=1&web=1&e=YqigKe).
 
 ## Synthea data generated
 

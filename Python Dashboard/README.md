@@ -1,29 +1,35 @@
 ### The Aim
-The topic of Eco-system links Australian clinic data to social economic data targeting the underneath mental health issue. The choropleth map aims to show the regional factors that affect the mental heath clinical behaviours. 
+The topic of Eco-system links Australian mental illness data to social economic data targeting the underneath mental health issue. The choropleth map aims to show the social-economic factors and regional factors in Victoria that affect the mental heath clinical behaviors. 
 
+You can read through our project's technical notes, including the choropleth map that implementing by r and Python bugs we fixed, the detailed Synthea data generating notes and code, the matlab analysis on raw data and data-related documents [here](https://wehieduau.sharepoint.com/sites/StudentInternGroupatWEHI/Shared%20Documents/Forms/AllItems.aspx?csf=1&web=1&e=nuYayz&cid=19b1b5ac%2D0223%2D4203%2Da521%2D4f50200c0188&FolderCTID=0x0120008FF8F20683AC284798EA496C639CC069&id=%2Fsites%2FStudentInternGroupatWEHI%2FShared%20Documents%2FClinical%20Dashboards%2F2023%20Semester%202%20Technical%20notes&viewid=afd55542%2D8e3a%2D4327%2D95f9%2D63450ae10d2a). 
 
 ### Prepare the environment
 The author use Jupyter Notebook and the required libraries are listed below.
+
 ``` python
 import pandas as pd
 import geopandas as gpd 
+import geoplot as gplt
 import matplotlib.pyplot as plt 
+import mapclassify as mc
+import contextily as ctx
 ``` 
 Also, make sure all packages are update to the latest version, especially 
 ```
 pip install --upgrade pillow
 pip install --upgrade matplotlib
-
 ```
 
 ### Prepare the data
 
-The geographic data is collect from [https://data.gov.au/geoserver/vic-suburb-locality-boundaries-psma-administrative-boundaries/wfs?request=GetFeature&typeName=ckan_af33dd8c_0534_4e18_9245_fc64440f742e&outputFormat=json]
+The geographic data is collect from [Australian government website](https://data.gov.au/geoserver/vic-suburb-locality-boundaries-psma-administrative-boundaries/wfs?request=GetFeature&typeName=ckan_af33dd8c_0534_4e18_9245_fc64440f742e&outputFormat=json). The downloaded shp data can be downloaded [here](https://wehieduau.sharepoint.com/:f:/r/sites/StudentInternGroupatWEHI/Shared%20Documents/Clinical%20Dashboards/2023%20Semester%202%20Technical%20notes/Python%20Dashboard%20-%20draft%20data%20used/data/GDA2020?csf=1&web=1&e=FdzQNm).
 
-The clinical data is synthetic data generating on Synthea. 
+The [clinical data and Australian demographic data](https://wehieduau.sharepoint.com/:f:/r/sites/StudentInternGroupatWEHI/Shared%20Documents/Clinical%20Dashboards/synthea%202023?csf=1&web=1&e=O3qgY9) are synthetic data generating on Synthea. We also choose actual social-eco data from ABS, [`Socioeco_data_poa_modified.csv`](https://wehieduau.sharepoint.com/:x:/r/sites/StudentInternGroupatWEHI/Shared%20Documents/Clinical%20Dashboards/2023%20Semester%202%20Technical%20notes/SEIFA%20dataset/Socioeco_data_poa_modified%20.csv?d=w9837d55a5cd143569f557f86b3adfeca&csf=1&web=1&e=16LCbH).
 
-The  `synthetic.csv` in data folder is a fake generated data for drafting the map. The topic of this dataset mainly focus on the ratio of low income range by gender and suburb in Australia. 
-The `social-eco.csv` data is social-economic data that we use to link to the clinic synthetic data.
+**A reminder**
+If your team stuck at handling Synthea platform, try this data to not stop/waste time.
+The [synthetic_data_Python_generated.csv](https://wehieduau.sharepoint.com/:x:/r/sites/StudentInternGroupatWEHI/Shared%20Documents/Clinical%20Dashboards/2023%20Semester%202%20Technical%20notes/synthetic_data_Python_generated.csv?d=w462c8ef8e3ba4b978616e4d4bf27f2f1&csf=1&web=1&e=lwyp5I) is a dummy data generating using Python for drafting the map. The topic of this dataset mainly focus on the ratio of low income range by gender and suburb in Australia. 
+
 
 ### Data Wrangling
 Check missing values, fill/drop null values, geometry column in GeoData dataframe, datatypes.

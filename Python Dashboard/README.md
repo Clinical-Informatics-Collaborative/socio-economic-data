@@ -22,7 +22,7 @@ pip install --upgrade matplotlib
 
 ### Prepare the data
 
-The geographic data is collect from [Australian government website](https://data.gov.au/geoserver/vic-suburb-locality-boundaries-psma-administrative-boundaries/wfs?request=GetFeature&typeName=ckan_af33dd8c_0534_4e18_9245_fc64440f742e&outputFormat=json). The VIC .shp data can be downloaded [here](https://wehieduau.sharepoint.com/:f:/r/sites/StudentInternGroupatWEHI/Shared%20Documents/Clinical%20Dashboards/2023%20Semester%202%20Technical%20notes/Python%20Dashboard%20-%20draft%20data%20used/data/GDA2020?csf=1&web=1&e=FdzQNm).
+The geographic data is collect from [Australian government website](https://data.gov.au/dataset/ds-dga-af33dd8c-0534-4e18-9245-fc64440f742e/details). The VIC .shp data can be simply downloaded [here](https://wehieduau.sharepoint.com/:f:/r/sites/StudentInternGroupatWEHI/Shared%20Documents/Clinical%20Dashboards/2023%20Semester%202%20Technical%20notes/Python%20Dashboard%20-%20draft%20data%20used/data/GDA2020?csf=1&web=1&e=FdzQNm).
 The [clinical data and Australian demographic data](https://wehieduau.sharepoint.com/:f:/r/sites/StudentInternGroupatWEHI/Shared%20Documents/Clinical%20Dashboards/synthea%202023?csf=1&web=1&e=O3qgY9) are synthetic data generating on Synthea. We also choose actual social-eco data from ABS, [Socioeco_data_poa_modified.csv](https://wehieduau.sharepoint.com/:x:/r/sites/StudentInternGroupatWEHI/Shared%20Documents/Clinical%20Dashboards/2023%20Semester%202%20Technical%20notes/SEIFA%20dataset/Socioeco_data_poa_modified%20.csv?d=w9837d55a5cd143569f557f86b3adfeca&csf=1&web=1&e=16LCbH).
 
 **A reminder**

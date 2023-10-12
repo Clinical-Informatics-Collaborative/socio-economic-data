@@ -1,0 +1,10 @@
+- hosts: vm1
+  vars_files:
+    - host_vars/nectar.yaml
+  gather_facts: no
+
+  roles:
+    - role: openstack-common
+    - role: openstack-openrc
+    - role: openstack-instance
+    

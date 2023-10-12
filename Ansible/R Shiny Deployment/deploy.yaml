@@ -1,0 +1,11 @@
+- hosts: vm1
+  become: yes
+  vars_files:
+    - host_vars/var.yaml
+  gather_facts: no
+
+  roles:
+    - role: requisite-package
+    - role: r-libraries
+    #- role: pull-code
+    - role: deploy-shiny

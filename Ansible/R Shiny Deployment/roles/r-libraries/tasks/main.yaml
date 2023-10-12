@@ -1,0 +1,10 @@
+- name: Install required R packages
+  shell: |
+    R -e "install.packages(c('shiny', 'leaflet', 'sf', 'ggplot2'), repos='http://cran.rstudio.com/')"
+
+# Install Shiny server
+- name: Download and install Shiny server
+  shell: |
+    sudo apt-get install gdebi-core
+    wget https://download3.rstudio.org/ubuntu-14.04/x86_64/shiny-server-1.5.16.958-amd64.deb
+    sudo gdebi -n shiny-server-1.5.16.958-amd64.deb

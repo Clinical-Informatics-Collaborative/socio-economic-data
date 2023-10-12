@@ -1,0 +1,70 @@
+---
+# Create an instance on NeCTAR
+- name: Create an instance
+  os_server:
+    cloud:
+      auth:
+        auth_url: https://keystone.rc.nectar.org.au:5000/v3/
+        username: "hung.x@wehi.edu.au"
+        password: tHisISaTEMpPassWOrd1598
+        project_id: ecacab823baa439f8f8d85da5a26b219
+        project_name: "pt-76851"
+        user_domain_name: "Default"
+      region_name: "Melbourne"
+      interface: "public"
+      identity_api_version: 3
+    state: present
+    name: my_instance
+    image: '{{ instance_image }}'
+    flavor: '{{ instance_flavor }}'
+    key_name: '{{ instance_key_name }}'
+    availability_zone: '{{ availability_zone }}'
+    wait: yes
+    timeout: 6000
+    security_groups:
+      - default
+  register: instance
+
+- name: Create an instance
+  openstack.cloud.server:
+    # auth:
+    #   auth_url: "{{ lookup('env', 'OS_AUTH_URL') }}"
+    #   username: "{{ lookup('env', 'OS_USERNAME') }}"
+    #   password: "{{ lookup('env', 'OS_PASSWORD') }}"
+    #   project_name: "{{ lookup('env', 'OS_PROJECT_NAME') }}"
+    #   user_domain_name: "{{ lookup('env', 'OS_USER_DOMAIN_NAME') }}"
+    cloud: openstack
+    name: '{{ item.name }}'
+    image: '{{ instance_image }}'
+    key_name: '{{ instance_key_name }}'
+    flavor: '{{ instance_flavor }}'
+    availability_zone: '{{ availability_zone }}'
+    security_groups: '{{ security_groups }}'
+    auto_floating_ip: no
+    wait: yes
+    timeout: 6000
+    state: present
+  loop: '{{ instances }}'
+  register: os_instance
+
+- ansible.builtin.debug:
+    msg: "Instance {{ item.openstack.name }} has been created. IP address is {{ item.openstack.public_v4 }}"
+  loop: '{{ os_instance.results }}'
+  when: item.openstack is defined
+
+- name: Wait for connection
+  ansible.builtin.wait_for:
+    host: "{{ item.openstack.public_v4 }}"
+    port: 22
+    timeout: 600
+    search_regex: OpenSSH
+  loop: '{{ os_instance.results }}'
+  when: item.openstack is defined
+
+# Add hosts to Ansible in-memory inventory
+- name: Add host
+  ansible.builtin.add_host:
+    name: '{{ item.openstack.public_v4 }}'
+    groups: Wordpress
+  loop: '{{ os_instance.results }}'
+  when: item.openstack is defined

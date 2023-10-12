@@ -1,0 +1,9 @@
+- name: Clone repository from GitHub
+  git:
+    repo: "{{ github_repo }}"
+    dest: "{{ app_directory }}"
+    version: master
+    accept_hostkey: yes
+    force: yes
+  environment:
+    GIT_ASKPASS: "echo {{ github_token }}"

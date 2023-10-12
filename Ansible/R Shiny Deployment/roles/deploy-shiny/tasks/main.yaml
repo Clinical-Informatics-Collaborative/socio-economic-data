@@ -1,0 +1,11 @@
+# Deploy Shiny app
+- name: Copy Shiny app to Shiny server directory
+  copy:
+    src: "/home/ubuntu/dashboard"
+    dest: "/srv/shiny-server/dashboard"
+    remote_src: yes
+      
+- name: Restart Shiny server
+  systemd:
+    name: shiny-server
+    state: restarted

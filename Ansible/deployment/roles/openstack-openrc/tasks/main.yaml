@@ -1,0 +1,19 @@
+# - name: Copy openrc.sh to remote
+#   copy:
+#     src: ../../../pt-76851-openrc.sh
+#     dest: /tmp/openrc.sh
+#     mode: '0600'  # Ensure it's not world-readable
+
+# - name: Source openrc.sh on remote
+#   shell: . /tmp/openrc.sh
+#   register: source_output
+#   changed_when: false  # This just sets environment vars and doesn't change state
+
+- name: Read configuration of all defined clouds
+  openstack.cloud.config:
+  register: config
+
+- name: Print clouds
+  loop: "{{ config.clouds }}"
+  debug:
+    var: item

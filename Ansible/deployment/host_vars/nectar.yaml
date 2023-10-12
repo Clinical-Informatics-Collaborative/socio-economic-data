@@ -1,0 +1,14 @@
+# Common vars
+availability_zone: melbourne-qh2
+instance_image: 08158d7c-979a-41b9-baea-b5d7ce59dc64
+instance_key_name: wehi_project
+instance_flavor: t3.xsmall
+
+security_groups:
+  - http
+  - ssh
+  - default
+  
+# Instance
+instances:
+  - name: Instance-2
